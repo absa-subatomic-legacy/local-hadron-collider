@@ -1,0 +1,151 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: subatomic
+metadata:
+  annotations:
+    description: Subatomic Build Components
+    iconClass: icon-git
+    tags: subatomic
+  name: subatomic
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+    name: jenkins-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+    name: jenkins-slave-maven-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+    name: jdk8-maven3-newrelic-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: jenkins-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "jenkins-subatomic:${JENKINS_VERSION}"
+    source:
+      contextDir: "${JENKINS_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: "${JENKINS_FROM_IMAGE}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: jenkins-slave-maven-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "jenkins-slave-maven-subatomic:${JENKINS_SLAVE_MAVEN_VERSION}"
+    source:
+      contextDir: "${JENKINS_SLAVE_MAVEN_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: "${JENKINS_SLAVE_MAVEN_FROM_IMAGE}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: jdk8-maven3-newrelic-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "jdk8-maven3-newrelic-subatomic:${S2I_JDK_MAVEN_VERSION}"
+    source:
+      contextDir: "${S2I_JDK_MAVEN_VERSION_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+parameters:
+- description: OpenShift Jenkins image version
+  name: JENKINS_FROM_IMAGE
+  value: "openshift/jenkins-2-centos7:v3.9"
+- description: Subatomic Jenkins version/tag
+  name: JENKINS_VERSION
+  value: "2.0"
+- description: Path within Git repository where the Jenkins Server Dockerfile is located
+  name: JENKINS_CONTEXT_DIR
+  value: jenkins
+- description: OpenShift Jenkins Maven slave image version
+  name: JENKINS_SLAVE_MAVEN_FROM_IMAGE
+  value: "openshift/jenkins-slave-maven-centos7:v3.9"
+- description: Subatomic Jenkins Maven slave version/tag
+  name: JENKINS_SLAVE_MAVEN_VERSION
+  value: "2.0"
+- description: Path within Git repository where the Jenkins slave Dockerfile is located
+  name: JENKINS_SLAVE_MAVEN_CONTEXT_DIR
+  value: jenkins-slave/maven
+- description: Subatomic S2I image for Java/Maven applications
+  name: S2I_JDK_MAVEN_VERSION
+  value: "2.0"
+- description: Path within Git repository where the S2I Dockerfile is located
+  name: S2I_JDK_MAVEN_VERSION_CONTEXT_DIR
+  value: s2i-jdk8-maven3-subatomic
+- description: Git branch/tag reference
+  name: LABORATORY_SOURCE_REPOSITORY_REF
+  value: master  
+- description: Git source URL for Laboratory Dockerfiles
+  name: LABORATORY_SOURCE_REPOSITORY_URL
+  required: true
+  value: https://github.com/absa-subatomic/laboratory.git

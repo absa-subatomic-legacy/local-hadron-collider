@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: bitbucket-server
+metadata:
+  annotations:
+    description: Bitbucket Server Build Components
+    iconClass: icon-git
+    tags: bitbucket
+  name: bitbucket-server
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: bitbucket-server
+    name: bitbucket-server
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: bitbucket-server
+    name: bitbucket-server
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "bitbucket-server:${BITBUCKET_VERSION}"
+    source:
+      contextDir: "${CONTEXT_DIR}"
+      git:
+        ref: "${SOURCE_REPOSITORY_REF}"
+        uri: "${SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      buildArgs:
+        - name: BITBUCKET_VERSION
+          value: "${BITBUCKET_VERSION}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+parameters:
+- description: Bitbucket Server version to download from https://www.atlassian.com/software/bitbucket/download-archives
+  name: BITBUCKET_VERSION
+  value: "5.4.6"
+- description: Path within Git repository where the Bitbucket Server Dockerfile is located
+  name: CONTEXT_DIR
+  value: bitbucket
+- description: Git branch/tag reference
+  name: SOURCE_REPOSITORY_REF
+  value: master  
+- description: Git source URL for Bitbucket Server Dockerfile
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: https://github.com/absa-subatomic/local-hadron-collider.git

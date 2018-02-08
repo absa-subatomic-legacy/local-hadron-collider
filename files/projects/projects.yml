@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: List
+items:
+- kind: ProjectRequest
+  apiVersion: v1
+  metadata:
+    name: subatomic
+    creationTimestamp: null
+  displayName: Subatomic
+  description: Subatomic platform
+- kind: ProjectRequest
+  apiVersion: v1
+  metadata:
+    name: subatomic-infra
+    creationTimestamp: null
+  displayName: Subatomic Infrastructure
+  description: Supporting infrastructure components for local testing of Subatomic 

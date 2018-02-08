@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: nexus
+metadata:
+  annotations:
+    description: Nexus Build Components
+    iconClass: icon-openjdk
+    tags: nexus
+  name: nexus
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: nexus
+    name: nexus
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: nexus
+    name: nexus
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "nexus:${NEXUS_VERSION}"
+    source:
+      contextDir: "${CONTEXT_DIR}"
+      git:
+        ref: "${SOURCE_REPOSITORY_REF}"
+        uri: "${SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      buildArgs:
+        - name: NEXUS_VERSION
+          value: "${NEXUS_VERSION}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+parameters:
+- description: Nexus image version (https://hub.docker.com/r/sonatype/nexus)
+  name: NEXUS_VERSION
+  value: "2.14.6-02"
+- description: Path within Git repository where the Nexus Dockerfile is located
+  name: CONTEXT_DIR
+  value: nexus
+- description: Git branch/tag reference
+  name: SOURCE_REPOSITORY_REF
+  value: master  
+- description: Git source URL for Nexus Dockerfile
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: https://github.com/absa-subatomic/local-hadron-collider.git

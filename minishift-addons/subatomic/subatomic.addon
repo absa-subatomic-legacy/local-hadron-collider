@@ -1,0 +1,24 @@
+# Name: subatomic
+# Description: Configures minishift for local development of the Subatomic platform
+# Required-vars:
+
+# I.e. the default Router certificate is now valid for any *.subatomic.local route host
+echo Replacing default router certificate for *.subatomic.local
+oc delete secret router-certs --namespace=default
+oc secrets new router-certs tls.crt=certs/subatomic.local.pem tls.key=certs/subatomic.local.key.pem --type='kubernetes.io/tls' --confirm --namespace=default
+oc rollout latest router --namespace=default
+oc rollout status dc/router --namespace=default
+
+# Replace the 'router-certs' Secret with a *.subatomic.local wildcard certificate
+# Set the default routing subdomain (https://github.com/minishift/minishift/blob/02f5f61443d28536a2ba2c830d9a1af68c7be883/docs/source/openshift/openshift-client-binary.adoc#example-changing-the-openshift-routing-suffix)
+echo Setting the routing subdomain to 'subatomic.local'
+docker exec origin /bin/bash -c $'cp /var/lib/origin/openshift.local.config/master/master-config.yaml /tmp/master-config.yaml'
+docker exec origin /bin/bash -c $'openshift ex config patch /tmp/master-config.yaml --patch=\'{"routingConfig": {"subdomain": "subatomic.local"}}\' > /var/lib/origin/openshift.local.config/master/master-config.yaml'
+
+echo 
+echo The Subatomic routing configurations have been successfully completed 👍
+echo Due to updating the `master-config.yaml` you must restart your minishift instance
+echo 
+echo Restart minishift by executing the following command *now*: 
+echo
+echo     minishift openshift restart
