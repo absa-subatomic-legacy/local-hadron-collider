@@ -85,6 +85,14 @@ $ minishift ip
 
 > This is the recommended solution to local DNS
 
+Installing dnsmasq varies from platform to platform. Please use the platform specific installation method for your platform.
+As an example, install dnsmasq on macOS using Homebrew with:
+
+```console
+$ brew install dnsmasq
+...
+```
+
 To configure dnsmasq to resolve to your minishift IP, add the following to your `dnsmasq.conf`:
 
 ```
@@ -145,7 +153,7 @@ The OpenShift Applier is a playbook implemented in the `casl-ansible` project. T
 
 ```console
 $ cd ..
-$ https://github.com/redhat-cop/casl-ansible
+$ git clone https://github.com/redhat-cop/casl-ansible
 ...
 ```
 
