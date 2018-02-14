@@ -1,4 +1,4 @@
-# Local Hadron Collider
+# Local Hadron Collider [![Build Status](https://travis-ci.org/absa-subatomic/local-hadron-collider.svg?branch=master)](https://travis-ci.org/absa-subatomic/local-hadron-collider)
 
 Resources for getting a local [Subatomic](https://github.com/absa-subatomic)
 development environment up and running.
