@@ -219,3 +219,16 @@ Next, configure the administrator user as follows:
 |Email          | subatomic@local |
 |Password       | subatomic |
 
+### 8. Install the Post Webhooks for Bitbucket plugin
+
+The [Post Webhooks for Bitbucket](https://marketplace.atlassian.com/plugins/nl.topicus.bitbucket.bitbucket-webhooks/server/overview)
+plugin must be installed. This plugin is what allows Jenknins to be notified of pushes to branches and for pull requests.
+
+To install this plugin follow these steps:
+
+* Navigate to the Administration > Find new add-ons in Bitbucket
+* Enter `post for webhooks` in the search field and click search
+* You should see the first search result matching the plugin referenced above
+* Click the _Install_ button to the right of the search result
+
+![Bitbucket Server install Post Webhooks for Bitbucket plugin](/docs/images/bitbucket-plugin-install.png)
