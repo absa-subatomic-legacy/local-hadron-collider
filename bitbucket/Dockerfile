@@ -18,9 +18,9 @@ WORKDIR $BITBUCKET_HOME
 CMD ["/entrypoint.sh", "-fg"]
 ENTRYPOINT ["/sbin/tini", "--"]
 
-RUN apk update -qq \
-    && apk add ca-certificates wget curl git openssh bash procps openssl perl ttf-dejavu tini \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/* 
+RUN apk add --no-cache ca-certificates wget curl git openssh bash procps openssl perl ttf-dejavu tini
+ADD https://raw.githubusercontent.com/absa-subatomic/local-hadron-collider/master/minishift-addons/subatomic/certs/subatomic-ca-chain.pem /usr/local/share/ca-certificates/ca.cert.crt
+RUN update-ca-certificates
 
 COPY bitbucket.properties ${BITBUCKET_INSTALL_DIR}/bitbucket.properties
 
