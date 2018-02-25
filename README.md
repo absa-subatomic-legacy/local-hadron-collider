@@ -30,6 +30,7 @@ There is a [preconfigured certificate chain](minishift-addons/subatomic/certs) f
 Install and enable the Subatomic addon and enable `admin-user` addon with the following:
 
 ```console
+$ minishift profile set subatomic-local
 $ minishift addons enable admin-user --profile subatomic-local
 Add-on 'admin-user' enabled
 $ minishift addons install minishift-addons/subatomic --profile subatomic-local
@@ -196,7 +197,7 @@ nexus              1          1         1         config,image(nexus:2.14.6-02)
 
 Now wait for the various deployments and builds to complete.
 
-> ⚠️ This can take a long time depending on your internet connection.
+> ⚠️ This can take a long time depending on your internet connection. Builds may fail due to network related issues. You can start new builds to complete the failed builds and deployments.
 
 ### 7. Setup Bitbucket Server
 
@@ -204,7 +205,8 @@ Once the Bitbucket Server deployment has completed successfully, you need to com
 
 Open your Bitbucket Server instance by clicking this link: https://bitbucket.subatomic.local/
 
-Choose the `Internal` database and when prompted for a license, either get a trial license or use a Developer License from your Atlassian technical contact.
+Choose the `Internal` database and when prompted for a license, either get a trial license or use a [Developer License](https://confluence.atlassian.com/jirakb/how-to-get-a-jira-developer-license-744526918.html)
+from your Atlassian technical contact.
 
 ![Bitbucket Server setup](/docs/images/bitbucket-setup-1.gif)
 
@@ -226,9 +228,29 @@ plugin must be installed. This plugin is what allows Jenknins to be notified of 
 
 To install this plugin follow these steps:
 
-* Navigate to the Administration > Find new add-ons in Bitbucket
+* Navigate to the [Administration > Find new add-ons](https://bitbucket.subatomic.local/plugins/servlet/upm/marketplace) in Bitbucket
 * Enter `post for webhooks` in the search field and click search
 * You should see the first search result matching the plugin referenced above
 * Click the _Install_ button to the right of the search result
 
 ![Bitbucket Server install Post Webhooks for Bitbucket plugin](/docs/images/bitbucket-plugin-install.png)
+
+### 10. Add Bitbucket accounts for test users
+
+For now you have to manually add Bitbucket user accounts for each team member you would like to test with. To add a user account, go to [Administration > Users](https://bitbucket.subatomic.local/admin/users)
+
+* Click [Create user](https://bitbucket.subatomic.local/admin/users?create)
+* Fille in the user's details
+
+> ⚠️ The `Username` must match the **domain username** you enter when onboarding a team member.
+
+![Bitbucket create user](/docs/images/bitbucket-create-user.png)
+
+Repeat this for however many test members you are going to use.
+
+## Running Subatomic
+
+Now that your local test environment should be up and running, you can start Gluon and Quantum Mechanic:
+
+* See Gluon [development setup](https://github.com/absa-subatomic/gluon#development-setup) for running Gluon locally
+* Then start Quantum Mechanic by following the [development setup](https://github.com/absa-subatomic/quantum-mechanic#development-setup)

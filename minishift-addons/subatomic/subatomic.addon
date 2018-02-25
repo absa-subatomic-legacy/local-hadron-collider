@@ -3,6 +3,9 @@
 # Required-vars:
 
 # I.e. the default Router certificate is now valid for any *.subatomic.local route host
+echo Waiting for initial Router deployment to complete...
+oc rollout status dc/router --revision=1 --namespace=default
+
 echo Replacing default router certificate for *.subatomic.local
 oc delete secret router-certs --namespace=default
 oc secrets new router-certs tls.crt=certs/subatomic.local.pem tls.key=certs/subatomic.local.key.pem --type='kubernetes.io/tls' --confirm --namespace=default
