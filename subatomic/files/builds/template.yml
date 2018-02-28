@@ -37,6 +37,15 @@ objects:
     lookupPolicy:
       local: true
 - apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+    name: subatomic-config-server
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
   kind: BuildConfig
   metadata:
     labels:
@@ -117,6 +126,31 @@ objects:
     - imageChange: {}
       type: ImageChange
     - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: subatomic-config-server
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "subatomic-config-server:${CONFIG_SERVER_VERSION}"
+    source:
+      git:
+        ref: "${CONFIG_SERVER_SOURCE_REPOSITORY_REF}"
+        uri: "${CONFIG_SERVER_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: "ImageStreamTag"
+          name: "jdk8-maven3-newrelic-subatomic:${S2I_JDK_MAVEN_VERSION}"  
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
 parameters:
 - description: OpenShift Jenkins image version
   name: JENKINS_FROM_IMAGE
@@ -142,6 +176,15 @@ parameters:
 - description: Path within Git repository where the S2I Dockerfile is located
   name: S2I_JDK_MAVEN_VERSION_CONTEXT_DIR
   value: s2i-jdk8-maven3-subatomic
+- description: Subatomic Config Server image version
+  name: CONFIG_SERVER_VERSION
+  value: "1.0"
+- description: Subatomic Config Server Git branch/tag reference
+  name: CONFIG_SERVER_SOURCE_REPOSITORY_REF
+  value: master    
+- description: Path within the Subatomic Config Server Git repository where the S2I Dockerfile is located
+  name: CONFIG_SERVER_SOURCE_REPOSITORY_URL
+  value: https://github.com/absa-subatomic/subatomic-config-server.git
 - description: Git branch/tag reference
   name: LABORATORY_SOURCE_REPOSITORY_REF
   value: master  

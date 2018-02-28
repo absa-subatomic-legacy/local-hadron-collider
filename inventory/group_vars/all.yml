@@ -44,7 +44,11 @@ openshift_cluster_content:
   - name: jenkins-persistent-subatomic
     namespace: subatomic
     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/jenkins/jenkins-persistent-subatomic-template.yml"
-    file_action: create 
+    file_action: create
+  - name: subatomic-config-server
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-config-server-template.yml"
+    file_action: create      
 - object: serviceaccounts
   content:
   - name: subatomic
