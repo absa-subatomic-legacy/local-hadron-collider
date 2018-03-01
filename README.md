@@ -62,6 +62,13 @@ Restart minishift by executing the following command *now*:
 -- Applying addon 'admin-user':..
 ```
 
+> If for any reason the Subatomic minishift addon fails, you can retry applying the addon
+> by running:
+>
+>```console
+>$ minishift addons apply subatomic
+>``` 
+
 #### 4.1 Restart minishift
 
 For the routing subdomain change you must restart your minishift instance:
