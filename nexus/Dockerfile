@@ -1,7 +1,7 @@
 FROM centos:centos7
 # MAINTAINER Sonatype <cloud-ops@sonatype.com>
 
-ARG NEXUS_VERSION=2.14.6-02
+ARG NEXUS_VERSION=2.14.8-01
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz
 
 ENV SONATYPE_WORK=/sonatype-work \

@@ -6,6 +6,7 @@ metadata:
     openshift.io/display-name: Bitbucket Server
     iconClass: icon-git
 labels:
+  app: bitbucket-server
   template: bitbucket-server
 objects:
   - apiVersion: v1
