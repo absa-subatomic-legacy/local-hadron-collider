@@ -242,7 +242,7 @@ To install this plugin follow these steps:
 
 ![Bitbucket Server install Post Webhooks for Bitbucket plugin](/docs/images/bitbucket-plugin-install.png)
 
-### 10. Add Bitbucket accounts for test users
+### 9. Add Bitbucket accounts for test users
 
 For now you have to manually add Bitbucket user accounts for each team member you would like to test with. To add a user account, go to [Administration > Users](https://bitbucket.subatomic.local/admin/users)
 
