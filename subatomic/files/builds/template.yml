@@ -32,6 +32,15 @@ objects:
   metadata:
     labels:
       application: subatomic
+    name: jenkins-slave-nodejs-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
     name: jdk8-maven3-newrelic-subatomic
   spec:
     lookupPolicy:
@@ -106,6 +115,34 @@ objects:
   metadata:
     labels:
       application: subatomic
+    name: jenkins-slave-nodejs-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "jenkins-slave-nodejs-subatomic:${JENKINS_SLAVE_NODEJS_VERSION}"
+    source:
+      contextDir: "${JENKINS_SLAVE_NODEJS_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: "${JENKINS_SLAVE_NODEJS_FROM_IMAGE}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
     name: jdk8-maven3-newrelic-subatomic
   spec:
     output:
@@ -169,6 +206,18 @@ parameters:
   value: "2.0"
 - description: Path within Git repository where the Jenkins slave Dockerfile is located
   name: JENKINS_SLAVE_MAVEN_CONTEXT_DIR
+  value: jenkins-slave/nodejs
+- description: Subatomic S2I image for Java/Maven applications
+  name: S2I_JDK_MAVEN_VERSION
+  value: "2.0"
+- description: OpenShift Jenkins NodeJS slave image version
+  name: JENKINS_SLAVE_NODEJS_FROM_IMAGE
+  value: "openshift/jenkins-slave-nodejs-centos7:v3.9"
+- description: Subatomic Jenkins NodeJS slave version/tag
+  name: JENKINS_SLAVE_NODEJS_VERSION
+  value: "2.0"
+- description: Path within Git repository where the Jenkins slave Dockerfile is located
+  name: JENKINS_SLAVE_NODEJS_CONTEXT_DIR
   value: jenkins-slave/maven
 - description: Subatomic S2I image for Java/Maven applications
   name: S2I_JDK_MAVEN_VERSION

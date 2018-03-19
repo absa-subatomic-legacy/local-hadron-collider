@@ -45,6 +45,8 @@ objects:
       replicas: 1
       selector:
         name: nexus
+      strategy:
+        type: Recreate        
       template:
         metadata:
           labels:
