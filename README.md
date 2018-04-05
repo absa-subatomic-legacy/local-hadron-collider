@@ -157,11 +157,11 @@ $ oc login https://192.168.64.15:8443 --token=UaUbbHWlHTul8mecJuM31mJQfmid7x5dV0
 
 #### 6.2 Clone the casl-ansible repository
 
-The OpenShift Applier is a playbook implemented in the `casl-ansible` project. Therefore, you need to clone this project at the same directory level as the `local-hadron-collider` directory.
+The OpenShift Applier is a playbook implemented in the `openshift-applier` project. Therefore, you need to clone this project at the same directory level as the `local-hadron-collider` directory.
 
 ```console
 $ cd ..
-$ git clone https://github.com/redhat-cop/casl-ansible
+$ git clone https://github.com:redhat-cop/openshift-applier.git
 ...
 ```
 
@@ -171,7 +171,7 @@ Now change back into your `local-hadron-collider` directory and run with:
 
 ```console
 $ cd local-hadron-collider
-$ ansible-playbook -i inventory/hosts ../casl-ansible/playbooks/openshift-cluster-seed.yml --connection=local
+$ ansible-playbook -i inventory/hosts ../openshift-applier/playbooks/openshift-cluster-seed.yml --connection=local
 ...
 ```
 
