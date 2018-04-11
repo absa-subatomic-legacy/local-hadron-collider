@@ -161,7 +161,7 @@ The OpenShift Applier is a playbook implemented in the `openshift-applier` proje
 
 ```console
 $ cd ..
-$ git clone https://github.com:redhat-cop/openshift-applier.git
+$ git clone https://github.com/redhat-cop/openshift-applier.git
 ...
 ```
 
