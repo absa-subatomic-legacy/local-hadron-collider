@@ -206,7 +206,7 @@ parameters:
   value: "2.0"
 - description: Path within Git repository where the Jenkins slave Dockerfile is located
   name: JENKINS_SLAVE_MAVEN_CONTEXT_DIR
-  value: jenkins-slave/nodejs
+  value: jenkins-slave/maven
 - description: Subatomic S2I image for Java/Maven applications
   name: S2I_JDK_MAVEN_VERSION
   value: "2.0"
@@ -218,7 +218,7 @@ parameters:
   value: "2.0"
 - description: Path within Git repository where the Jenkins slave Dockerfile is located
   name: JENKINS_SLAVE_NODEJS_CONTEXT_DIR
-  value: jenkins-slave/maven
+  value: jenkins-slave/nodejs
 - description: Subatomic S2I image for Java/Maven applications
   name: S2I_JDK_MAVEN_VERSION
   value: "2.0"
