@@ -188,6 +188,31 @@ objects:
     - imageChange: {}
       type: ImageChange
     - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: nodejs8-nginx112-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "nodejs8-nginx112-subatomic:${S2I_NODE_NGINX_VERSION}"
+    source:
+      contextDir: "${S2I_NODE_NGINX_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
 parameters:
 - description: OpenShift Jenkins image version
   name: JENKINS_FROM_IMAGE
@@ -225,6 +250,12 @@ parameters:
 - description: Path within Git repository where the S2I Dockerfile is located
   name: S2I_JDK_MAVEN_VERSION_CONTEXT_DIR
   value: s2i-jdk8-maven3-subatomic
+- description: Subatomic S2I image for Node/Nginx applications
+  name: S2I_NODE_NGINX_VERSION
+  value: "2.0"
+- description: Path within Git repository where the Node Nginx S2I Dockerfile is located
+  name: S2I_NODE_NGINX_CONTEXT_DIR
+  value: s2i-nodejs-nginx-subatomic
 - description: Subatomic Config Server image version
   name: CONFIG_SERVER_VERSION
   value: "1.0"
