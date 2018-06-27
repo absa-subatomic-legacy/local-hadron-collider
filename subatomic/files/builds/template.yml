@@ -55,6 +55,16 @@ objects:
     labels:
       application: subatomic
       usage: "subatomic-is"
+    name: nodejs8-nginx112-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+      usage: "subatomic-is"
     name: subatomic-config-server
   spec:
     lookupPolicy:
