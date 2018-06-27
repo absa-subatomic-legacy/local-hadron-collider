@@ -14,6 +14,7 @@ objects:
   metadata:
     labels:
       application: subatomic
+      usage: "subatomic-is"
     name: jenkins-subatomic
   spec:
     lookupPolicy:
@@ -23,6 +24,7 @@ objects:
   metadata:
     labels:
       application: subatomic
+      usage: "subatomic-is"
     name: jenkins-slave-maven-subatomic
   spec:
     lookupPolicy:
@@ -32,6 +34,7 @@ objects:
   metadata:
     labels:
       application: subatomic
+      usage: "subatomic-is"
     name: jenkins-slave-nodejs-subatomic
   spec:
     lookupPolicy:
@@ -41,6 +44,7 @@ objects:
   metadata:
     labels:
       application: subatomic
+      usage: "subatomic-is"
     name: jdk8-maven3-newrelic-subatomic
   spec:
     lookupPolicy:
@@ -50,6 +54,17 @@ objects:
   metadata:
     labels:
       application: subatomic
+      usage: "subatomic-is"
+    name: nodejs8-nginx112-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+      usage: "subatomic-is"
     name: subatomic-config-server
   spec:
     lookupPolicy:
