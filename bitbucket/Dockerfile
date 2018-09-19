@@ -1,4 +1,4 @@
-FROM openjdk:8u121-alpine
+FROM openjdk:8u171-alpine
 LABEL author="Subatomic - https://github.com/absa-subatomic"
 
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
