@@ -124,4 +124,4 @@ parameters:
   - description: Bitbucket Server
     name: BITBUCKET_VERSION
     required: true
-    value: "5.12.2"        
+    value: "5.14.0"        
