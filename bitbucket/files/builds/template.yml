@@ -49,7 +49,7 @@ objects:
 parameters:
 - description: Bitbucket Server version to download from https://www.atlassian.com/software/bitbucket/download-archives
   name: BITBUCKET_VERSION
-  value: "5.4.6"
+  value: "5.12.2"
 - description: Path within Git repository where the Bitbucket Server Dockerfile is located
   name: CONTEXT_DIR
   value: bitbucket

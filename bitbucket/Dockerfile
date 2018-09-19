@@ -30,7 +30,7 @@ RUN chmod g+x /entrypoint.sh
 RUN mkdir -p ${BITBUCKET_INSTALL_DIR} \
     && chmod g+rwX ${BITBUCKET_INSTALL_DIR}
 
-ARG BITBUCKET_VERSION=5.4.6
+ARG BITBUCKET_VERSION=5.12.2
 ARG DOWNLOAD_URL=https://downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-${BITBUCKET_VERSION}.tar.gz
 COPY . /tmp
 

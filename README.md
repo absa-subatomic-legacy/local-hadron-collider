@@ -125,18 +125,18 @@ You should get a `503 Service Unavailable` response.
 
 You could also manually add entries into your `/etc/hosts` for the various routes you expose.
 
-### 6. Install the Subatomic infratructure components
+### 6. Install the Subatomic infrastructure components
 
 Subatomic needs the following components installed:
 
-* Bitbucket Server
-* Nexus
+* Atlassian Bitbucket Server
+* Sonatype Nexus
 
 In addition, the Jenkins and S2I images beed to be built and available.
 
-All this is accomplished by running the [OpenShift Applier](https://github.com/redhat-cop/casl-ansible/tree/master/roles/openshift-applier). The applier will add the various resources required to build and deploy the above.
+All this is accomplished by running the [OpenShift Applier](https://github.com/redhat-cop/openshift-applier/tree/master/roles/openshift-applier). The applier will add the various resources required to build and deploy the above.
 
-> The OpenShift Applier requires that Ansible be installed. Please follow the [installation guide](http://docs.ansible.com/ansible/latest/intro_installation.html)
+> The OpenShift Applier requires that Ansible > 2.5 be installed. Please follow the [installation guide](http://docs.ansible.com/ansible/latest/intro_installation.html)
 to install for your platform.
 
 #### 6.1 Log in with the `oc` CLI tool
@@ -155,23 +155,22 @@ $ oc login https://192.168.64.15:8443 --token=UaUbbHWlHTul8mecJuM31mJQfmid7x5dV0
 ...
 ```
 
-#### 6.2 Clone the casl-ansible repository
+The OpenShift Applier is a playbook implemented in the OpenShift Applier project. Therefore, 
 
-The OpenShift Applier is a playbook implemented in the `openshift-applier` project. Therefore, you need to clone this project at the same directory level as the `local-hadron-collider` directory.
+#### 6.2 Install and run the OpenShift Applier role
 
-```console
-$ cd ..
-$ git clone https://github.com/redhat-cop/openshift-applier.git
-...
-```
-
-#### 6.3 Run the OpenShift Applier
-
-Now change back into your `local-hadron-collider` directory and run with:
+First you need to install the applier dependency via Ansible Galaxy.
 
 ```console
 $ cd local-hadron-collider
-$ ansible-playbook -i inventory/hosts ../openshift-applier/playbooks/openshift-cluster-seed.yml --connection=local
+$ ansible-galaxy install --role-file requirements.yml --roles-path=roles
+...
+```
+
+Now in your `local-hadron-collider` directory run the OpenShift Applier role with:
+
+```console
+$ ansible-playbook -i inventory/hosts roles/openshift-applier/playbooks/openshift-cluster-seed.yml
 ...
 ```
 
