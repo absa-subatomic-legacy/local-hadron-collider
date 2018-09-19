@@ -19,7 +19,7 @@ CMD ["/entrypoint.sh", "-fg"]
 ENTRYPOINT ["/sbin/tini", "--"]
 
 RUN apk add --no-cache ca-certificates wget curl git openssh bash procps openssl perl ttf-dejavu tini
-ADD https://raw.githubusercontent.com/absa-subatomic/local-hadron-collider/master/minishift-addons/subatomic/certs/subatomic-ca-chain.pem /usr/local/share/ca-certificates/ca.cert.crt
+ADD https://raw.githubusercontent.com/absa-subatomic/local-hadron-collider/master/minishift-addons/subatomic/certs/subatomic.ca.crt /usr/local/share/ca-certificates/ca.cert.crt
 RUN update-ca-certificates
 
 COPY bitbucket.properties ${BITBUCKET_INSTALL_DIR}/bitbucket.properties
