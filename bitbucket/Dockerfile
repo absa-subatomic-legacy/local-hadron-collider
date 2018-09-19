@@ -1,5 +1,5 @@
 FROM openjdk:8u121-alpine
-LABEL author Subatomic - https://github.com/absa-subatomic
+LABEL author="Subatomic - https://github.com/absa-subatomic"
 
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
 ENV BITBUCKET_HOME          /var/atlassian/application-data/bitbucket
