@@ -4,31 +4,27 @@ openshift_cluster_content:
   content:
   - name: subatomic-infra
     file: "{{ inventory_dir }}/../files/projects/projects.yml"
-    file_action: create
+    action: create
 - object: builds
   content:
   - name: bitbucket-server
     namespace: subatomic-infra
     template: "{{ inventory_dir }}/../bitbucket/files/builds/template.yml"
-    params: "{{ inventory_dir }}/../bitbucket/files/builds/params"
 - object: deployments
   content:
   - name: bitbucket-server
     namespace: subatomic-infra
     template: "{{ inventory_dir }}/../bitbucket/files/deployments/template.yml"
-    params: "{{ inventory_dir }}/../bitbucket/files/deployments/params"
-# - object: builds
-#   content:
-#   - name: nexus
-#     namespace: subatomic-infra
-#     template: "{{ inventory_dir }}/../nexus/files/builds/template.yml"
-#     params: "{{ inventory_dir }}/../nexus/files/builds/params"
-# - object: deployments
-#   content:
-#   - name: nexus
-#     namespace: subatomic-infra
-#     template: "{{ inventory_dir }}/../nexus/files/deployments/template.yml"
-#     params: "{{ inventory_dir }}/../nexus/files/deployments/params"
+- object: builds
+  content:
+  - name: nexus
+    namespace: subatomic-infra
+    template: "{{ inventory_dir }}/../nexus/files/builds/template.yml"
+- object: deployments
+  content:
+  - name: nexus
+    namespace: subatomic-infra
+    template: "{{ inventory_dir }}/../nexus/files/deployments/template.yml"
 # - object: builds
 #   content:
 #   - name: subatomic
@@ -40,32 +36,32 @@ openshift_cluster_content:
 #   - name: subatomic-nodejs
 #     namespace: subatomic
 #     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-nodejs-template.yml"
-#     file_action: create
+#     action: create
 #   - name: subatomic-spring-boot-1x
 #     namespace: subatomic
 #     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-1x-template.yml"
-#     file_action: create
+#     action: create
 #   - name: subatomic-spring-boot-2x
 #     namespace: subatomic
 #     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-2x-template.yml"
-#     file_action: create
+#     action: create
 #   - name: jenkins-persistent-subatomic
 #     namespace: subatomic
 #     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/jenkins/jenkins-persistent-subatomic-template.yml"
-#     file_action: create
+#     action: create
 #   - name: subatomic-config-server
 #     namespace: subatomic
 #     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-config-server-template.yml"
-#     file_action: create      
+#     action: create      
 - object: serviceaccounts
   content:
   - name: subatomic
     namespace: subatomic
     file: "{{ inventory_dir }}/../subatomic/files/serviceaccounts/serviceaccounts.yml"
-    file_action: create 
+    action: create 
 - object: rolebindings
   content:
   - name: subatomic
     namespace: subatomic
     file: "{{ inventory_dir }}/../subatomic/files/rolebindings/rolebindings.yml"
-    file_action: create 
+    action: create 
