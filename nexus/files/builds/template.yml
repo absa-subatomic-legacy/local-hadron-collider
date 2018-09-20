@@ -49,7 +49,7 @@ objects:
 parameters:
 - description: Nexus image version (https://hub.docker.com/r/sonatype/nexus)
   name: NEXUS_VERSION
-  value: "2.14.8-01"
+  value: "2.14.9-01"
 - description: Path within Git repository where the Nexus Dockerfile is located
   name: CONTEXT_DIR
   value: nexus

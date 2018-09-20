@@ -122,7 +122,7 @@ objects:
 parameters:
   - name: NEXUS_VERSION
     displayName: "Nexus image version"
-    value: "2.14.8-01"
+    value: "2.14.9-01"
   - name: CONTEXT_PATH
     displayName: "Web context path"
     description: "Passed as -Dnexus-webapp-context-path. This is used to define the URL which Nexus is accessed. Defaults to '/'"

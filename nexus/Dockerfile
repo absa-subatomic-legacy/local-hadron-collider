@@ -1,8 +1,5 @@
 FROM centos:centos7
 
-ARG NEXUS_VERSION=2.14.8-01
-ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz
-
 ENV SONATYPE_WORK=/sonatype-work \
     JAVA_HOME=/opt/java \
     JAVA_VERSION_MAJOR=8 \
@@ -24,6 +21,9 @@ RUN mkdir -p /opt \
   | gunzip \
   | tar -x -C /opt \
   && ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} ${JAVA_HOME}
+
+ARG NEXUS_VERSION=2.14.9-01
+ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz
 
 RUN mkdir -p /opt/sonatype/nexus \
   && curl --fail --silent --location --retry 3 \
