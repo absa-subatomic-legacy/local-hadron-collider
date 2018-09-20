@@ -59,6 +59,8 @@ objects:
                   value: '443'
                 - name: SERVER_SCHEME
                   value: https    
+                - name: JVM_MAXIMUM_MEMORY
+                  value: ${JVM_MAXIMUM_MEMORY}    
               ports:
                 - containerPort: 7990
                   name: http
@@ -125,3 +127,7 @@ parameters:
     name: BITBUCKET_VERSION
     required: true
     value: "5.4.6"        
+  - description: JVM -Xmx
+    name: JVM_MAXIMUM_MEMORY
+    required: true
+    value: "512m"        
