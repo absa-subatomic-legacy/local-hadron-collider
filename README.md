@@ -41,12 +41,16 @@ Add-on 'subatomic' enabled
 
 ### 4. Start a Subatomic minishift instance
 
-Run a new minishift instance for local development:
+Start a new minishift instance for local development with parameters:
 
 ```console
 $ minishift start \
   --profile subatomic-local \
   --cpus 4 --memory 6144MB --disk-size 60GB
+  
+```
+Output:
+```console  
 -- Starting profile 'subatomic-local'
 ...
 -- Applying addon 'subatomic':
