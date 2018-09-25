@@ -234,7 +234,7 @@ parameters:
   value: "openshift/jenkins-2-centos7:v3.9"
 - description: Subatomic Jenkins version/tag
   name: JENKINS_VERSION
-  value: "2.0"
+  value: "2.1"
 - description: Path within Git repository where the Jenkins Server Dockerfile is located
   name: JENKINS_CONTEXT_DIR
   value: jenkins
