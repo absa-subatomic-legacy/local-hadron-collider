@@ -25,34 +25,33 @@ openshift_cluster_content:
   - name: nexus
     namespace: subatomic-infra
     template: "{{ inventory_dir }}/../nexus/files/deployments/template.yml"
-# - object: builds
-#   content:
-#   - name: subatomic
-#     namespace: subatomic
-#     template: "{{ inventory_dir }}/../subatomic/files/builds/template.yml"
-#     params: "{{ inventory_dir }}/../subatomic/files/builds/params"    
-# - object: templates
-#   content:
-#   - name: subatomic-nodejs
-#     namespace: subatomic
-#     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-nodejs-template.yml"
-#     action: create
-#   - name: subatomic-spring-boot-1x
-#     namespace: subatomic
-#     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-1x-template.yml"
-#     action: create
-#   - name: subatomic-spring-boot-2x
-#     namespace: subatomic
-#     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-2x-template.yml"
-#     action: create
-#   - name: jenkins-persistent-subatomic
-#     namespace: subatomic
-#     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/jenkins/jenkins-persistent-subatomic-template.yml"
-#     action: create
-#   - name: subatomic-config-server
-#     namespace: subatomic
-#     file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-config-server-template.yml"
-#     action: create      
+- object: builds
+  content:
+  - name: subatomic
+    namespace: subatomic
+    template: "{{ inventory_dir }}/../subatomic/files/builds/template.yml"
+- object: templates
+  content:
+  - name: subatomic-nodejs
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-nodejs-template.yml"
+    action: create
+  - name: subatomic-spring-boot-1x
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-1x-template.yml"
+    action: create
+  - name: subatomic-spring-boot-2x
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-spring-boot-2x-template.yml"
+    action: create
+  - name: jenkins-persistent-subatomic
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/jenkins/jenkins-persistent-subatomic-template.yml"
+    action: create
+  - name: subatomic-config-server
+    namespace: subatomic
+    file: "https://raw.githubusercontent.com/absa-subatomic/laboratory/master/packages/applications/subatomic-config-server-template.yml"
+    action: create      
 - object: serviceaccounts
   content:
   - name: subatomic

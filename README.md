@@ -171,16 +171,17 @@ $ ansible-galaxy install --role-file requirements.yml --roles-path=roles
 ...
 ```
 
-Now in your `local-hadron-collider` directory run the OpenShift Applier role with:
+Then run the OpenShift Applier role with:
 
 ```console
+$ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES #see: https://github.com/ansible/ansible/issues/32499
 $ ansible-playbook -i inventory/hosts roles/openshift-applier/playbooks/openshift-cluster-seed.yml
 ...
 ```
 
 Two new projects will be created:
 
-* Subatomic - Project for Tempalates, Image Streams etc.
+* Subatomic - Project for Templates, Image Streams etc.
 
 ```console
 $ oc get builds --namespace subatomic

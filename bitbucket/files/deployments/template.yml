@@ -58,9 +58,11 @@ objects:
                 - name: SERVER_PROXY_PORT
                   value: '443'
                 - name: SERVER_SCHEME
-                  value: https    
+                  value: https
+                - name: JVM_MINIMUM_MEMORY
+                  value: ${JVM_MINIMUM_MEMORY}                     
                 - name: JVM_MAXIMUM_MEMORY
-                  value: ${JVM_MAXIMUM_MEMORY}    
+                  value: ${JVM_MAXIMUM_MEMORY} 
               ports:
                 - containerPort: 7990
                   name: http
@@ -68,6 +70,9 @@ objects:
                 - containerPort: 7999
                   name: ssh
                   protocol: TCP
+              resources:
+                limits:
+                  memory: ${SERVER_LIMITS_MEMORY}                  
               volumeMounts:
                 - name: bitbucket-workdir
                   mountPath: /var/atlassian/application-data/bitbucket
@@ -128,6 +133,14 @@ parameters:
     required: true
     value: "5.4.6"        
   - description: JVM -Xmx
+    name: JVM_MINIMUM_MEMORY
+    required: true
+    value: "768m"              
+  - description: JVM -Xmx
     name: JVM_MAXIMUM_MEMORY
     required: true
-    value: "512m"        
+    value: "768m"
+  - name: SERVER_LIMITS_MEMORY
+    displayName: Default memory limit for the Data Flow Server
+    description: "The default memory limit for Nexus. See https://docs.openshift.org/latest/dev_guide/compute_resources.html#dev-compute-resources"
+    value: "2Gi"    
