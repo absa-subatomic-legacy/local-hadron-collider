@@ -10,7 +10,7 @@ Follow the below steps to get a local Subatomic environment ready for local deve
 ### 1. Install minishift
 
 Follow the [instructions to install](https://docs.openshift.org/latest/minishift/getting-started/installing.html)
-minishift for your platform.
+minishift for your platform. Make sure you have at least version 1.24.0 or greater installed.
 
 ### 2. Clone this project
 
@@ -47,6 +47,7 @@ Start a new minishift instance for local development with parameters:
 $ minishift start \
   --profile subatomic-local \
   --cpus 4 --memory 6144MB --disk-size 60GB
+  --routing-suffix subatomic.local
   
 ```
 Output:
