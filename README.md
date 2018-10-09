@@ -43,7 +43,7 @@ Add-on 'subatomic' enabled
 
 Start a new minishift instance for local development with parameters:
 
-```console
+```bash
 $ minishift start \
   --profile subatomic-local \
   --cpus 4 --memory 6144MB --disk-size 60GB \
