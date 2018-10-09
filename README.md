@@ -46,7 +46,7 @@ Start a new minishift instance for local development with parameters:
 ```console
 $ minishift start \
   --profile subatomic-local \
-  --cpus 4 --memory 6144MB --disk-size 60GB
+  --cpus 4 --memory 6144MB --disk-size 60GB \
   --routing-suffix subatomic.local
   
 ```
@@ -252,7 +252,7 @@ To install this plugin follow these steps:
 For now you have to manually add Bitbucket user accounts for each team member you would like to test with. To add a user account, go to [Administration > Users](https://bitbucket.subatomic.local/admin/users)
 
 * Click [Create user](https://bitbucket.subatomic.local/admin/users?create)
-* Fille in the user's details
+* Fill in the user's details
 
 > ⚠️ The `Username` must match the **domain username** you enter when onboarding a team member.
 
