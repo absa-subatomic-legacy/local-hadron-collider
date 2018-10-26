@@ -1,7 +1,7 @@
 FROM centos:centos7
 
 ENV SONATYPE_WORK=/sonatype-work \
-    JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre
+    JAVA_HOME=/usr/lib/jvm/jre
 
 RUN yum install -y \
   curl tar createrepo java-1.8.0-openjdk \
