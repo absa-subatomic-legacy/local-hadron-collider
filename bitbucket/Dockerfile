@@ -13,7 +13,7 @@ RUN yum -y install wget curl tar createrepo openssl java-1.8.0-openjdk && \
   yum clean all && \
   rm -rf /var/cache/yum
 
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre
+ENV JAVA_HOME=/usr/lib/jvm/jre
 RUN echo $JAVA_HOME
 ENV PATH=$JAVA_HOME/bin:$PATH
 
