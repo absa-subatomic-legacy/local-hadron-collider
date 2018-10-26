@@ -1,26 +1,11 @@
 FROM centos:centos7
 
 ENV SONATYPE_WORK=/sonatype-work \
-    JAVA_HOME=/opt/java \
-    JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=181 \
-    JAVA_VERSION_BUILD=13 \
-    JAVA_DOWNLOAD_HASH=96a7b8442fe848ef90c96a2fad6ed6d1
-
-ENV JAVA_URL=http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_DOWNLOAD_HASH}/server-jre-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz
+    JAVA_HOME=/usr/lib/jvm/jre
 
 RUN yum install -y \
-  curl tar createrepo \
+  curl tar createrepo java-1.8.0-openjdk \
   && yum clean all
-
-# install Oracle JRE
-RUN mkdir -p /opt \
-  && curl --fail --silent --location --retry 3 \
-  --header "Cookie: oraclelicense=accept-securebackup-cookie; " \
-  ${JAVA_URL} \
-  | gunzip \
-  | tar -x -C /opt \
-  && ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} ${JAVA_HOME}
 
 ARG NEXUS_VERSION=2.14.9-01
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz
