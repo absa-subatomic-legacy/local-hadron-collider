@@ -14,7 +14,7 @@ We need our own root CA certificate to sign our certificates. This allows us to 
 
 ### Creating a `ssl.conf`
 
-First we need a [`ssl.conf`](ssl.conf) file that will contain some common `openssl` configuration options to dave some typing later.
+First we need a [`ssl.conf`](ssl.conf) file that will contain some common `openssl` configuration options to save some typing later.
 
 ```
 [ req ]
