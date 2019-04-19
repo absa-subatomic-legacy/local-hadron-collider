@@ -4,7 +4,7 @@ metadata:
   name: subatomic-cluster-admin
 roleRef:
   kind: ClusterRole
-  name: cluster-admin
+  name: admin-user
 subjects:
   - kind: ServiceAccount
     name: subatomic
