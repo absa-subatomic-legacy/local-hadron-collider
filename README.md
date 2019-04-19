@@ -258,7 +258,7 @@ For now you have to manually add Bitbucket user accounts for each team member yo
 * Click [Create user](https://bitbucket.subatomic.local/admin/users?create)
 * Fill in the user's details
 
-> ⚠️ The `Username` must match the **domain username** you enter when onboarding a team member.
+> ⚠️ The `Username` must match the **domain username** you enter when on-boarding a team member.
 
 ![Bitbucket create user](/docs/images/bitbucket-create-user.png)
 
