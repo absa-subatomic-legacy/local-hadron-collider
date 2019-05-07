@@ -58,7 +58,7 @@ $ minishift start \
   
   
 ```
-Note: Change the cpu, memory and disk size above to bets suit the resources on your local machine while still maintaining the minimum requirements needed to run minishift.
+Note: Change the cpu, memory and disk size above to best suit the resources on your local machine while still maintaining the minimum requirements needed to run minishift.
 
 Output:
 ```console  
