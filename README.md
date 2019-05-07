@@ -31,12 +31,17 @@ Install and enable the Subatomic addon and enable `admin-user` addon with the fo
 
 ```console
 $ minishift profile set subatomic-local
+Profile 'subatomic-local' set as active profile
+  
 $ minishift addons enable admin-user --profile subatomic-local
 Add-on 'admin-user' enabled
+  
 $ minishift addons install minishift-addons/subatomic --profile subatomic-local
 Addon 'subatomic' installed
+  
 $ minishift addons enable subatomic --profile subatomic-local
 Add-on 'subatomic' enabled
+  
 ```
 
 ### 4. Start a Subatomic minishift instance
@@ -48,6 +53,7 @@ $ minishift start \
   --profile subatomic-local \
   --cpus 4 --memory 6144MB --disk-size 60GB \
   --routing-suffix subatomic.local
+  
   
 ```
 Output:
