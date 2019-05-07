@@ -10,7 +10,7 @@ Follow the below steps to get a local Subatomic environment ready for local deve
 ### 1. Install minishift
 
 Follow the [instructions to install](https://docs.openshift.org/latest/minishift/getting-started/installing.html)
-minishift for your platform. Make sure you have at least version 1.24.0 or greater installed.
+minishift for your platform. Make sure you have at least version *v1.33.0+ba29431* or greater installed.
 
 ### 2. Clone this project
 
@@ -48,6 +48,8 @@ Add-on 'subatomic' enabled
 
 Start a new minishift instance for local development with parameters:
 
+Warning: If you have VirtualBox installed and you decide to use the xhyve vm driver you might get a kernel panic. Make sure that you set the vm-driver to xhyve ```$ minishift config set vm-driver xhyve``` before starting minishift.
+
 ```bash
 $ minishift start \
   --profile subatomic-local \
@@ -56,6 +58,8 @@ $ minishift start \
   
   
 ```
+Note: Change the cpu, memory and disk size above to bets suit the resources on your local machine while still maintaining the minimum requirements needed to run minishift.
+
 Output:
 ```console  
 -- Starting profile 'subatomic-local'
@@ -112,7 +116,7 @@ $ brew install dnsmasq
 ...
 ```
 
-To configure dnsmasq to resolve to your minishift IP, add the following to your `dnsmasq.conf`:
+To configure dnsmasq to resolve to your minishift IP, add the following to your `/usr/local/etc/dnsmasq.conf`:
 
 ```
 # IP of the HAProxy router: minishift ip
@@ -260,7 +264,7 @@ For now you have to manually add Bitbucket user accounts for each team member yo
 * Click [Create user](https://bitbucket.subatomic.local/admin/users?create)
 * Fill in the user's details
 
-> ⚠️ The `Username` must match the **domain username** you enter when onboarding a team member.
+> ⚠️ The `Username` must match the **domain username** you enter when on-boarding a team member.
 
 ![Bitbucket create user](/docs/images/bitbucket-create-user.png)
 
