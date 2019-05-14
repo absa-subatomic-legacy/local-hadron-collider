@@ -55,6 +55,16 @@ objects:
     labels:
       application: subatomic
       usage: "subatomic-is"
+    name: jenkins-slave-dotnet22-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+      usage: "subatomic-is"
     name: jdk8-maven3-newrelic-subatomic
   spec:
     lookupPolicy:
@@ -76,6 +86,16 @@ objects:
       application: subatomic
       usage: "subatomic-is"
     name: python36-subatomic
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: subatomic
+      usage: "subatomic-is"
+    name: dotnet22-subatomic
   spec:
     lookupPolicy:
       local: true
@@ -281,6 +301,34 @@ objects:
   metadata:
     labels:
       application: subatomic
+    name: jenkins-slave-dotnet22-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "jenkins-slave-dotnet22-subatomic:${JENKINS_SLAVE_DOTNET22_VERSION}"
+    source:
+      contextDir: "${JENKINS_SLAVE_DOTNET22_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: "${JENKINS_SLAVE_DOTNET22_FROM_IMAGE}"
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
     name: python36-subatomic
   spec:
     output:
@@ -289,6 +337,31 @@ objects:
         name: "python36-subatomic:${S2I_PYTHON36_VERSION}"
     source:
       contextDir: "${S2I_PYTHON36_CONTEXT_DIR}"
+      git:
+        ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
+        uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        forcePull: true
+      type: Docker
+    triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      application: subatomic
+    name: dotnet22-subatomic
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "dotnet22-subatomic:${S2I_DOTNET22_VERSION}"
+    source:
+      contextDir: "${S2I_DOTNET22_CONTEXT_DIR}"
       git:
         ref: "${LABORATORY_SOURCE_REPOSITORY_REF}"
         uri: "${LABORATORY_SOURCE_REPOSITORY_URL}"
@@ -359,6 +432,21 @@ parameters:
 - description: Path within Git repository where the S2I Dockerfile is located
   name: S2I_PYTHON36_CONTEXT_DIR
   value: s2i-python36-subatomic
+- description: OpenShift Jenkins .NET Core 2.2 slave image version
+  name: JENKINS_SLAVE_DOTNET22_FROM_IMAGE
+  value: "openshift/jenkins-slave-base-centos7:v3.9"
+- description: Subatomic Jenkins .NET Core 2.2 slave version/tag
+  name: JENKINS_SLAVE_DOTNET22_VERSION
+  value: "2.0"
+- description: Path within Git repository where the Jenkins slave Dockerfile is located
+  name: JENKINS_SLAVE_DONET22_CONTEXT_DIR
+  value: jenkins-slave/dotnet22
+- description: Subatomic S2I image for .NET Core 2.2 applications
+  name: S2I_DOTNET22_VERSION
+  value: "2.0"
+- description: Path within Git repository where the S2I Dockerfile is located
+  name: S2I_DOTNET22_CONTEXT_DIR
+  value: s2i-dotnetcore-subatomic
 - description: Subatomic Config Server image version
   name: CONFIG_SERVER_VERSION
   value: "1.0"
