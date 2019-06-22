@@ -48,17 +48,15 @@ Add-on 'subatomic' enabled
 
 Start a new minishift instance for local development with parameters:
 
-Warning: If you have VirtualBox installed and you decide to use the xhyve vm driver you might get a kernel panic. Make sure that you set the vm-driver to xhyve ```$ minishift config set vm-driver xhyve``` before starting minishift.
+Warning: If you have VirtualBox installed and you decide to use the xhyve vm driver you might get a kernel panic. Make sure that you set the vm-driver to xhyve ```$ minishift config set vm-driver xhyve``` before starting minishift. To use virtualbox, set the vm-driver to xhyve ```$ minishift config set vm-driver virtualbox```.
 
 ```bash
 $ minishift start \
   --profile subatomic-local \
   --cpus 4 --memory 6144MB --disk-size 60GB \
   --routing-suffix subatomic.local
-  
-  
 ```
-Note: Change the cpu, memory and disk size above to bets suit the resources on your local machine while still maintaining the minimum requirements needed to run minishift.
+Note: Change the cpu, memory and disk size above to best suit the resources on your local machine while still maintaining the minimum requirements needed to run minishift.
 
 Output:
 ```console  
