@@ -270,7 +270,7 @@ Repeat this for however many test members you are going to use.
 
 ## Running Subatomic
 
-Now that your local test environment should be up and running, you can start Gluon and Quantum Mechanic:
+Now that your local test environment should be up and running, you can start Gluon and Quantum Mechanic :
 
 * See Gluon [development setup](https://github.com/absa-subatomic/gluon#development-setup) for running Gluon locally
 * Then start Quantum Mechanic by following the [development setup](https://github.com/absa-subatomic/quantum-mechanic#development-setup)
