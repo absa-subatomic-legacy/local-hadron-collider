@@ -439,7 +439,7 @@ parameters:
   name: JENKINS_SLAVE_DOTNET22_VERSION
   value: "2.0"
 - description: Path within Git repository where the Jenkins slave Dockerfile is located
-  name: JENKINS_SLAVE_DONET22_CONTEXT_DIR
+  name: JENKINS_SLAVE_DOTNET22_CONTEXT_DIR
   value: jenkins-slave/dotnet22
 - description: Subatomic S2I image for .NET Core 2.2 applications
   name: S2I_DOTNET22_VERSION
